@@ -1,0 +1,69 @@
+﻿@page
+@model BarCodeLab.Pages.Shoes.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Shoes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Shoes.Name" class="control-label"></label>
+                <input asp-for="Shoes.Name" class="form-control" />
+                <span asp-validation-for="Shoes.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.DeliveryDate" class="control-label"></label>
+                <input asp-for="Shoes.DeliveryDate" class="form-control" />
+                <span asp-validation-for="Shoes.DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Season" class="control-label"></label>
+                <select asp-for="Shoes.Season" asp-items="Html.GetEnumSelectList<Models.Season>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Shoes.Season" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Gender" class="control-label"></label>
+                <select asp-for="Shoes.Gender" asp-items="Html.GetEnumSelectList<Models.Gender>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Shoes.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Brand" class="control-label"></label>
+                <select asp-for="Shoes.BrandId" class="form-control"
+                        asp-items="@Model.BrandNameSL">
+                    <option value="">-- Select Brand --</option>
+                </select>
+                <span asp-validation-for="Shoes.BrandId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Manufacturer" class="control-label"></label>
+                <select asp-for="Shoes.ManufacturerId" class="form-control"
+                        asp-items="@Model.CountryNameSL">
+                    <option value="">-- Select Manufacturer --</option>
+                </select>
+                <span asp-validation-for="Shoes.ManufacturerId" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

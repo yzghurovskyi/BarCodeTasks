@@ -1,0 +1,65 @@
+﻿@page
+@model BarCodeLab.Pages.Shoes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Shoes</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Shoes.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shoes.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Shoes.DeliveryDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shoes.DeliveryDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Shoes.Season)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shoes.Season)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Shoes.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shoes.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Shoes.Brand)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shoes.Brand.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Shoes.Manufacturer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Shoes.Manufacturer.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <form method="post" asp-page-handler="DownloadBarCode">
+        <input type="hidden" asp-for="@Model.Shoes.Id" />
+        <input type="hidden" asp-for="@Model.Shoes.Name" />
+        <input type="hidden" asp-for="@Model.Shoes.BrandId" />
+        <input type="hidden" asp-for="@Model.Shoes.ManufacturerId" />
+        <button type="submit" class="success">
+            Download barcode
+        </button>
+    </form>
+    
+    <a asp-page="./Edit" asp-route-id="@Model.Shoes.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
